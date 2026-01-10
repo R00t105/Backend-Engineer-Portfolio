@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Mo'men | Backend Developer specialized in Java, Spring Boot, and Scalable Systems.">
+    <title>Mo'men | Backend Developer</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/style.css">
+    
+    <!-- Icons (Optional: FontAwesome or similar, or using SVGs directly) -->
+    <!-- Using a CDN for generic icons if needed, or inline SVGs preferred for performance -->
+</head>
+<body>
+
+    <!-- ==================== FLOATING DOCK NAV ==================== -->
+    <header class="header">
+        <div class="nav-container">
+            <!-- Hidden Logo for Dock Layout -->
+            <!-- <a href="#" class="logo">&lt;M/&gt;</a> -->
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li>
+                        <a href="#hero" class="nav-link">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" class="nav-link">
+                            <span class="nav-icon">👨‍💻</span>
+                            <span class="nav-text">About</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#skills" class="nav-link">
+                            <span class="nav-icon">⚡</span>
+                            <span class="nav-text">Skills</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects" class="nav-link">
+                            <span class="nav-icon">🚀</span>
+                            <span class="nav-text">Work</span>
+                        </a>
+                    </li>
+                    <!-- Experience merged or separate? Keeping separate -->
+                    <li>
+                        <a href="#experience" class="nav-link">
+                            <span class="nav-icon">📈</span>
+                            <span class="nav-text">Exp</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="nav-link">
+                            <span class="nav-icon">📬</span>
+                            <span class="nav-text">Contact</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==================== HERO (MODERN MINIMALIST) ==================== -->
+        <section id="hero" class="section hero-section">
+            <div class="container hero-content">
+                
+                <span class="hero-eyebrow">Hello, I'm Mo'men</span>
+                
+                <h1 class="hero-title">
+                    <span class="gradient-text">Backend Engineer</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    I build secure, scalable systems using <strong>Java Spring Boot</strong>.<br>
+                    Also experienced in creating modern Frontends with <strong>React</strong>.
+                </p>
+
+                <!-- Glassmorphic Tech Badges -->
+                <div class="hero-badges">
+                    <span class="glass-badge"><i class="icon">☕</i> Java</span>
+                    <span class="glass-badge"><i class="icon">🍃</i> Spring Boot</span>
+                    <span class="glass-badge"><i class="icon">🐳</i> Docker</span>
+                    <span class="glass-badge"><i class="icon">⚛️</i> React</span>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn-creative btn-creative-primary">
+                        View Projects <span class="btn-icon-right">➜</span>
+                    </a>
+                    <a href="#contact" class="btn-creative btn-creative-outline">
+                        Contact Me
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== ABOUT (CLEAN STRUCTURE) ==================== -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="about-header">
+                    <h2 class="section-title">Beyond the Code</h2>
+                    <p class="section-lead">
+                        I bridge the gap between complex backend logic and seamless user experiences.
+                        My engineering philosophy is built on three core pillars:
+                    </p>
+                </div>
+                
+                <div class="about-pillars">
+                    
+                    <!-- Pillar 1 -->
+                    <div class="pillar-card">
+                        <div class="pillar-icon-box">
+                            <span class="pillar-icon">⚙️</span>
+                        </div>
+                        <h3>Architecture First</h3>
+                        <p>
+                            I design <strong>scalable Java ecosystems</strong> not just endpoints. I focus on resilience, data consistency, and maximizing throughput.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="pillar-card">
+                        <div class="pillar-icon-box">
+                            <span class="pillar-icon">⚡</span>
+                        </div>
+                        <h3>Full-Stack Capable</h3>
+                        <p>
+                            Proficient in <strong>React.js</strong> to eliminate dependencies. I can build the dashboard that consumes my own API.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="pillar-card">
+                        <div class="pillar-icon-box">
+                            <span class="pillar-icon">🛡️</span>
+                        </div>
+                        <h3>Engineering Standards</h3>
+                        <p>
+                            Committed to <strong>Clean Architecture</strong> and <strong>SOLID principles</strong>. Readable code is maintainable code.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SKILLS (TECH ECOSYSTEM) ==================== -->
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <h2 class="section-title">Technical Arsenal</h2>
+                
+                <div class="skills-wrapper">
+                    
+                    <!-- Cluster 1: The Core (Background highlight) -->
+                    <div class="skill-cluster cluster-backend">
+                        <div class="cluster-header">
+                            <span class="cluster-icon">☕</span>
+                            <h3>Backend Engineering</h3>
+                        </div>
+                        <div class="cluster-tags">
+                            <span class="tech-tag-pill">☕ Java 17+</span>
+                            <span class="tech-tag-pill highlight">🍃 Spring Boot 3</span>
+                            <span class="tech-tag-pill">🔒 Spring Security</span>
+                            <span class="tech-tag-pill">🔌 RESTful APIs</span>
+                            <span class="tech-tag-pill">🔑 JWT Auth</span>
+                            <span class="tech-tag-pill">🐘 JPA / Hibernate</span>
+                            <span class="tech-tag-pill">🌐 Microservices</span>
+                        </div>
+                    </div>
+
+                    <!-- Cluster 2: Data & Infra -->
+                    <div class="skill-cluster">
+                        <div class="cluster-header">
+                            <span class="cluster-icon">🗄️</span>
+                            <h3>Data & Infrastructure</h3>
+                        </div>
+                        <div class="cluster-tags">
+                            <span class="tech-tag-pill">🐬 MySQL</span>
+                            <span class="tech-tag-pill">🐘 PostgreSQL</span>
+                            <span class="tech-tag-pill">🐳 Docker</span>
+                            <span class="tech-tag-pill">📦 Maven</span>
+                            <span class="tech-tag-pill">🏗️ Clean Architecture</span>
+                        </div>
+                    </div>
+
+                    <!-- Cluster 3: Frontend & Tools -->
+                    <div class="skill-cluster">
+                        <div class="cluster-header">
+                            <span class="cluster-icon">⚛️</span>
+                            <h3>Frontend & Tools</h3>
+                        </div>
+                        <div class="cluster-tags">
+                            <span class="tech-tag-pill">⚛️ React.js</span>
+                            <span class="tech-tag-pill">📜 JavaScript (ES6+)</span>
+                            <span class="tech-tag-pill">🔧 Git / GitHub</span>
+                            <span class="tech-tag-pill">🚀 Postman</span>
+                            <span class="tech-tag-pill">📝 IntelliJ IDEA</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PROJECTS ==================== -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+        <!-- ==================== PROJECTS (CREATIVE CARDS) ==================== -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <h2 class="section-title">Featured Work</h2>
+                <div class="projects-grid">
+                    
+                    <!-- Project 1: Online Learning -->
+                    <div class="project-card">
+                        <div class="card-content">
+                            <div class="project-header">
+                                <span class="project-unique-icon">🎓</span>
+                                <a href="https://github.com/R00t105/Online_Learning_Platform" target="_blank" class="github-icon-link" aria-label="View Online Learning on GitHub">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                </a>
+                            </div>
+                            <h3 class="project-title">Online Learning Platform</h3>
+                            <p class="project-desc">
+                                Comprehensive educational platform managing courses, student enrollments, and instructor workflows. Built for scalability.
+                            </p>
+                            <div class="project-tech-list">
+                                <span class="tech-tag-mini">☕ Java</span>
+                                <span class="tech-tag-mini">🍃 Spring Boot</span>
+                                <span class="tech-tag-mini">🔌 REST API</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Task Management -->
+                    <div class="project-card">
+                        <div class="card-content">
+                            <div class="project-header">
+                                <span class="project-unique-icon">✅</span>
+                                <a href="https://github.com/R00t105/Task-Management" target="_blank" class="github-icon-link" aria-label="View Task Management on GitHub">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                </a>
+                            </div>
+                            <h3 class="project-title">Task Management</h3>
+                            <p class="project-desc">
+                                Secure workspace for tracking tasks and projects. Features real-time status updates and user-role management. Built for scalability.
+                            </p>
+                            <div class="project-tech-list">
+                                <span class="tech-tag-mini">🔒 Security</span>
+                                <span class="tech-tag-mini">🔑 JWT</span>
+                                <span class="tech-tag-mini">🐬 MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Library System -->
+                    <div class="project-card">
+                        <div class="card-content">
+                            <div class="project-header">
+                                <span class="project-unique-icon">📚</span>
+                                <a href="https://github.com/R00t105/Library-Management-System" target="_blank" class="github-icon-link" aria-label="View Library System on GitHub">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                </a>
+                            </div>
+                            <h3 class="project-title">Library Management</h3>
+                            <p class="project-desc">
+                                Digital catalog system optimizing book tracking. Streamlines borrowing, returning, and inventory management processes.
+                            </p>
+                            <div class="project-tech-list">
+                                <span class="tech-tag-mini">🐘 Hibernate</span>
+                                <span class="tech-tag-mini">📦 Maven</span>
+                                <span class="tech-tag-mini">🏗️ CRUD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+            </div>
+        </section>
+
+        <!-- ==================== EXPERIENCE & JOURNEY ==================== -->
+        <section id="experience" class="section experience-section">
+            <div class="container">
+                <h2 class="section-title">Journey & Milestones</h2>
+                <div class="experience-grid">
+                    
+                    <!-- Card 1: Grad Project -->
+                    <div class="experience-card">
+                        <span class="exp-year">2024</span>
+                        <h3 class="exp-title">Graduation Project: Fundraising Platform</h3>
+                        <div class="exp-subtitle">Kickstarter Clone | Grade: Excellent (A+)</div>
+                        <p class="exp-desc">
+                            <strong>Developed a comprehensive full-stack crowdfunding platform similar to Kickstarter.</strong>
+                            <br><span class="highlight-text">Role: Backend Lead & Architect</span>
+                            <br>Designed the scalable database schema, implemented secure payment gateways, and coordinated the team workflow using Agile methodologies.
+                        </p>
+                    </div>
+
+                    <!-- Card 2: DEPI Project -->
+                    <div class="experience-card">
+                        <span class="exp-year">2024</span>
+                        <h3 class="exp-title">DEPI Capstone Project</h3>
+                        <div class="exp-subtitle">Digital Egypt Pioneers Initiative</div>
+                        <p class="exp-desc">
+                           <strong>A specialized intensive training program graduation project.</strong>
+                            <br><span class="highlight-text">Role: Backend Developer</span>
+                            <br>Engineered robust API services and business logic for a complex enterprise solution. Focused on clean architecture, performance optimization, and rigorous testing standards.
+                        </p>
+                    </div>
+
+                    <!-- Card 3: Udemy Certification -->
+                    <div class="experience-card">
+                        <span class="exp-year">Certification</span>
+                        <h3 class="exp-title">Java & Spring Boot Full Stack</h3>
+                        <div class="exp-subtitle">Udemy Intensive Bootcamp</div>
+                        <p class="exp-desc">
+                            <strong>Self-Directed Learning</strong>
+                            <br><span class="highlight-text">Focus: Spring Ecosystem Mastery</span>
+                            <br>Mastered Spring Boot, Security, and Data JPA. Built and deployed multiple end-to-end applications demonstrating proficiency in modern microservices.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT ==================== -->
+        <!-- ==================== CONTACT (HOLOGRAPHIC HUB) ==================== -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                
+                <div class="contact-hub-wrapper">
+                    <!-- Left Column: The Hook & Socials -->
+                    <div class="contact-info-col">
+                        <h2 class="section-title text-left">Let's Build Something <span class="highlight-text">Amazing</span></h2>
+                        <p class="contact-lead">
+                            I'm currently available for freelance projects and full-time opportunities.
+                            Whether you have a question or just want to discuss the latest in Tech, my inbox is always open.
+                        </p>
+                        
+                        <div class="social-orbit">
+                            <a href="https://github.com/R00t105" target="_blank" class="social-planet" aria-label="GitHub">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/momen-abdulrahman/" target="_blank" class="social-planet" aria-label="LinkedIn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="mailto:almonshake75@gmail.com" class="social-planet" aria-label="Email">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                <span>Email Me</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: The Transmission Form -->
+                    <div class="contact-form-col">
+                        <div class="holographic-card">
+                            <form id="contact-form" action="https://formsubmit.co/almonshake75@gmail.com" method="POST">
+                                <!-- Honeypot to prevent spam -->
+                                <input type="text" name="_honey" style="display:none">
+                                <!-- Disable Captcha -->
+                                <input type="hidden" name="_captcha" value="false">
+                                
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" id="name" name="name" class="form-input neon-input" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" id="email" name="email" class="form-input neon-input" placeholder="your@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea id="message" name="message" class="form-textarea neon-input" placeholder="Let's build something great..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary transmit-btn" style="width: 100%;">
+                                    <span>Transmit Message</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                </button>
+                            </form>
+
+                            <!-- Success Message (Hooks into JS) -->
+                            <div id="form-success" class="form-success-message" style="display: none;">
+                                <div class="success-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                </div>
+                                <h3>Transmission Successful!</h3>
+                                <p>Message received. Initiating response protocol...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <p class="mono-text">&copy; 2026 Mo'men. Built with Clean Code.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/201028950440" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    </a>
+
+    <!-- JS -->
+    <script src="scripts/main.js"></script>
+</body>
+</html>

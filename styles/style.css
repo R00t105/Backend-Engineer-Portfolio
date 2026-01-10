@@ -1,0 +1,1192 @@
+/* =========================================
+   1. VARIABLES & THEME CONFIGURATION
+   ========================================= */
+:root {
+  /* Usage: var(--variable-name) */
+  
+  /* Colors - Nordic Slate / Comfortable & Clear */
+  --bg-primary: #0f172a;   /* Slate 900 - Deep, rich blue-grey (Comfortable) */
+  --bg-secondary: #1e293b; /* Slate 800 - Lighter for content */
+  --bg-tertiary: #334155;  /* Slate 700 */
+  
+  --text-primary: #f8fafc;   /* Slate 50 - Very high clarity */
+  --text-secondary: #94a3b8; /* Slate 400 - Soft contrast */
+  --text-muted: #64748b;     
+  
+  --accent-primary: #34d399;   /* Emerald 400 - Calm, positive, clear green */
+  --accent-hover: #10b981;     
+  --accent-secondary: #38bdf8; /* Sky Blue - for React/Fullstack hints */
+  
+  --border-color: #334155;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
+  
+  /* Layout */
+  --container-width: 1200px;
+  --header-height: 70px;
+  
+  /* Typography */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'Fira Code', 'Roboto Mono', monospace;
+  
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  
+  --transition-speed: 0.3s;
+}
+
+/* =========================================
+   2. RESET & BASE STYLES
+   ========================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-speed);
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: all var(--transition-speed);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================
+   3. TYPOGRAPHY
+   ========================================= */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.mono-text {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   4. UTILITIES
+   ========================================= */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+.section {
+  padding: var(--spacing-lg) 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: #000; /* Contrast for specific cyan */
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-outline {
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: rgba(0, 188, 212, 0.1);
+}
+
+/* =========================================
+   5. FLOATING DOCK NAV (Creative Redesign)
+   ========================================= */
+.header {
+  /* Hide standard header container logic, we re-purpose it */
+  position: fixed;
+  bottom: 2rem; /* Floating at bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  z-index: 1000;
+  background: transparent;
+  padding: 0;
+  border: none;
+  /* Smooth Fade & Scale Transition */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+}
+
+/* Hidden state during transition */
+.header.dock-hidden {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.95);
+  pointer-events: none;
+}
+
+/* Top position state */
+.header.dock-top {
+  bottom: auto;
+  top: 1.5rem;
+}
+
+.header.scrolled {
+  background: transparent;
+  border: none;
+}
+
+.nav-container {
+  background: rgba(17, 34, 64, 0.85); /* Glass effect on the pill */
+  backdrop-filter: blur(12px);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px; /* Pill shape */
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: auto;
+  transition: all var(--transition-speed);
+}
+
+.nav-container:hover {
+  border-color: rgba(100, 255, 218, 0.3);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  transform: translateY(-5px);
+}
+
+.logo {
+  display: none; /* Hide text logo in dock mode for minimalism, or keep small */
+}
+
+/* We will inject a new logo circle if needed, or just focus on links */
+
+.nav-list {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem; /* Smaller text */
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--bg-primary);
+  background-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.4);
+}
+
+/* Icon scaffolding (if we add icons later) */
+.nav-icon {
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+  display: block;
+}
+
+/* Mobile Toggle - Hide usually for bottom nav, but responsive check needed */
+.mobile-toggle {
+  display: none; 
+}
+
+/* Responsive adjustment for Dock */
+@media (max-width: 768px) {
+  .header {
+    bottom: 1rem;
+    width: 90%;
+  }
+  
+  .nav-container {
+    padding: 0.5rem 1rem;
+    width: 100%;
+    justify-content: space-around;
+    gap: 0;
+  }
+  
+  .nav-link {
+    font-size: 0.7rem;
+    padding: 0.4rem;
+  }
+  
+  /* Disable the old mobile menu logic visually */
+  .nav {
+    position: static;
+    transform: none;
+    background: transparent;
+    padding: 0;
+    width: 100%;
+    border: none;
+  }
+  
+  .nav-list {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* =========================================
+   6. HERO SECTION (MODERN MINIMALIST)
+   ========================================= */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Keeps it centered but we need to offset the bottom */
+  padding-top: 2rem;
+  padding-bottom: 12rem; /* Significantly increased to clear the floating dock */
+  text-align: center;
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, #1e293b 0%, #0f172a 100%);
+  /* Ensure content doesn't get hidden behind the dock on small vertical screens */
+  box-sizing: border-box;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+.hero-eyebrow {
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-sm);
+  display: block;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  animation: fadeInDown 1s ease-out;
+}
+
+.hero-title {
+  font-size: 5rem;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -2px;
+  line-height: 1.1;
+  font-weight: 800;
+  animation: fadeInUp 1s ease-out 0.2s backwards;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #f8fafc 0%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.hero-subtitle {
+  font-size: 1.35rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: var(--spacing-md);
+  max-width: 700px;
+  line-height: 1.6;
+  animation: fadeInUp 1s ease-out 0.4s backwards;
+}
+
+.hero-subtitle strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Glass Badges */
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-md);
+  animation: fadeInUp 1s ease-out 0.6s backwards;
+}
+
+.glass-badge {
+  background: rgba(255, 255, 255, 0.05); /* Very subtle glass */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.glass-badge:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(52, 211, 153, 0.2);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  animation: fadeInUp 1s ease-out 0.8s backwards;
+  margin-top: var(--spacing-sm);
+}
+
+/* Base Creative Button */
+.btn-creative {
+  position: relative;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* Primary: Emerald Glow & Shine */
+.btn-creative-primary {
+  background: linear-gradient(135deg, var(--accent-primary), #059669);
+  color: #0f172a; /* Dark text for contrast on green */
+  box-shadow: 0 4px 15px rgba(52, 211, 153, 0.3);
+  border: none;
+}
+
+/* Shine Effect Overlay */
+.btn-creative-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+  z-index: -1;
+}
+
+.btn-creative-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(52, 211, 153, 0.5);
+}
+
+.btn-creative-primary:hover::before {
+  left: 100%; /* Wipe effect */
+}
+
+/* Secondary: Glassmorphic Border */
+.btn-creative-outline {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.btn-creative-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Icons inside buttons */
+.btn-icon-right {
+  transition: transform 0.3s ease;
+}
+
+.btn-creative:hover .btn-icon-right {
+  transform: translateX(4px);
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 3.2rem;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  .hero-badges {
+    gap: 0.5rem;
+  }
+  .glass-badge {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+/* =========================================
+   7. ABOUT SECTION (CLEAN STRUCTURE)
+   ========================================= */
+.about-section {
+  padding-top: 5rem;
+  background: var(--bg-primary); 
+}
+
+.about-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem auto;
+}
+
+.section-lead {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.about-pillars {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.pillar-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  text-align: center;
+  padding: 2rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Interaction: Subtle lift */
+.pillar-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-primary);
+  background: linear-gradient(to bottom, var(--bg-secondary), rgba(52, 211, 153, 0.05));
+}
+
+.pillar-icon-box {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 1.5rem auto;
+  background: var(--bg-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border: 2px solid var(--border-color);
+  transition: border-color 0.3s ease;
+}
+
+.pillar-card:hover .pillar-icon-box {
+  border-color: var(--accent-primary);
+}
+
+.pillar-icon {
+  font-size: 2rem;
+}
+
+.pillar-card h3 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.pillar-card p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.pillar-card strong {
+  color: var(--accent-primary);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+  display: inline-block;
+  /* Removed absolute positioning hack that broke alignment */
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--accent-primary);
+}
+
+/* =========================================
+   8. SKILLS SECTION
+   ========================================= */
+/* =========================================
+   8. SKILLS SECTION (TECH ECOSYSTEM)
+   ========================================= */
+.skills-section {
+  padding-top: 5rem;
+  background-color: var(--bg-secondary);
+}
+
+.skills-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.skill-cluster {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.skill-cluster:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+}
+
+/* Special styling for the main backend cluster */
+.cluster-backend {
+  border-left: 4px solid var(--accent-primary);
+  background: linear-gradient(to right, rgba(52, 211, 153, 0.05), var(--bg-primary));
+}
+
+.cluster-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cluster-icon {
+  font-size: 1.8rem;
+}
+
+.cluster-header h3 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin: 0;
+}
+
+.cluster-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.tech-tag-pill {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+  cursor: default;
+  display: inline-flex;  /* Added for icon alignment */
+  align-items: center;   /* Center vertically */
+  gap: 8px;              /* Space between icon and text */
+}
+
+.tech-tag-pill:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  border-color: var(--text-muted);
+}
+
+.tech-tag-pill.highlight {
+  background: rgba(52, 211, 153, 0.1);
+  color: var(--accent-primary);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+.tech-tag-pill.highlight:hover {
+  background: rgba(52, 211, 153, 0.2);
+  box-shadow: 0 4px 12px rgba(52, 211, 153, 0.2);
+}
+
+/* =========================================
+   9. PROJECTS SECTION
+   ========================================= */
+/* =========================================
+   9. PROJECTS SECTION (CREATIVE CARDS)
+   ========================================= */
+.projects-section {
+  background-color: var(--bg-primary);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--accent-primary);
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.project-unique-icon {
+  font-size: 2.5rem;
+  /* Removed simple color, allowing emoji natural colors or filtering if needed */
+  /* If you want them monochrome, you can add a filter. Keeping full emoji for creativity. */
+}
+
+/* Fallback for Folder Icon if user removes emojis later */
+.folder-icon {
+  font-size: 2.5rem;
+  color: var(--accent-primary);
+}
+
+.github-icon-link {
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.github-icon-link:hover {
+  color: var(--accent-primary);
+  transform: scale(1.1);
+}
+
+.project-title {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+
+.project-card:hover .project-title {
+  color: var(--accent-primary);
+}
+
+.project-desc {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.project-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: auto;
+}
+
+/* Cleaner, more harmonious tech tags */
+.tech-tag-mini {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted); /* Simpler, cleaner look */
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.project-card:hover .tech-tag-mini {
+  color: var(--text-primary); /* Just brighten on hover, no distracting boxes */
+}
+
+/* =========================================
+   10. EXPERIENCE SECTION (Creative Cards)
+   ========================================= */
+.experience-section {
+  background-color: var(--bg-secondary);
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Connecting line (subtle spine) */
+.experience-grid::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-color);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+@media (min-width: 768px) {
+  .experience-grid::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.experience-card {
+  background: var(--bg-primary);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-primary);
+  box-shadow: 0 8px 30px rgba(52, 211, 153, 0.1);
+}
+
+/* Alternate cards on desktop */
+@media (min-width: 768px) {
+  .experience-card {
+    width: 45%;
+  }
+  
+  .experience-card:nth-child(odd) {
+    margin-right: auto;
+  }
+  
+  .experience-card:nth-child(even) {
+    margin-left: auto;
+  }
+  
+  /* Connector dot */
+  .experience-card::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    width: 16px;
+    height: 16px;
+    background: var(--bg-primary);
+    border: 3px solid var(--accent-primary);
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  .experience-card:nth-child(odd)::after {
+    right: -5.55rem; /* Calculates to center line from 45% width */
+  }
+
+  .experience-card:nth-child(even)::after {
+    left: -5.55rem;
+  }
+}
+
+.exp-year {
+  display: inline-block;
+  background: rgba(52, 211, 153, 0.1);
+  color: var(--accent-primary);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-family: var(--font-mono);
+}
+
+.exp-title {
+  font-size: 1.35rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.exp-subtitle {
+  font-size: 1rem;
+  color: var(--accent-secondary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.exp-desc {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.exp-desc strong {
+  color: var(--text-primary);
+}
+
+/* =========================================
+   11. CONTACT SECTION
+   ========================================= */
+/* =========================================
+   11. CONTACT SECTION (Holographic Hub)
+   ========================================= */
+.contact-section {
+  background: radial-gradient(circle at top right, #1e293b, #0f172a 60%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background ambient glow */
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.05), transparent 70%);
+  z-index: 0;
+}
+
+.contact-hub-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 900px) {
+  .contact-hub-wrapper {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.contact-info-col {
+  text-align: left;
+}
+
+.text-left {
+  text-align: left;
+  margin-left: 0;
+  transform: none !important; /* Override potential centering hacks */
+}
+
+.contact-lead {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+}
+
+/* Social Planets */
+.social-orbit {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.social-planet {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--bg-secondary);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  color: var(--text-primary);
+  text-decoration: none;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.social-planet:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: var(--accent-primary);
+  background: rgba(52, 211, 153, 0.1);
+  box-shadow: 0 5px 15px rgba(52, 211, 153, 0.2);
+}
+
+.social-planet svg {
+  transition: transform 0.3s;
+}
+
+.social-planet:hover svg {
+  transform: rotate(10deg);
+}
+
+/* Holographic Form Card */
+.holographic-card {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 1rem;
+  background-color: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Neon Focus Effect */
+.neon-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  background-color: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 0 15px rgba(52, 211, 153, 0.15);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.transmit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.transmit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(52, 211, 153, 0.3);
+}
+
+.transmit-btn svg {
+  transition: transform 0.3s;
+}
+
+.transmit-btn:hover svg {
+  transform: translateX(3px) translateY(-3px);
+}
+
+/* Success Message Overlay */
+.form-success-message {
+  text-align: center;
+  padding: 2rem 0;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.success-icon {
+  color: var(--accent-primary);
+  margin-bottom: 1rem;
+  animation: scaleIn 0.5s ease-out 0.2s backwards;
+}
+
+.form-success-message h3 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-success-message p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =========================================
+   13. FLOATING WHATSAPP BUTTON
+   ========================================= */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  animation: pulse-green 2s infinite;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  background-color: #128c7e;
+  box-shadow: 0 8px 15px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-float svg {
+  fill: #fff; /* Make icon filled white for better visibility */
+  stroke: none;
+}
+
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Mobile Adjustment to avoid Dock overlap */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 5.5rem; /* Raised to clear the Floating Dock */
+    right: 1.2rem;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+}
+
+/* =========================================
+   14. FOOTER
+   ========================================= */
+.footer {
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-md) 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border-color);
+}
