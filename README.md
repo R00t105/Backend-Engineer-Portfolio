@@ -50,7 +50,7 @@ This portfolio showcases professional backend experience, system architecture sk
 
 - **Email**: [almonshake75@gmail.com](mailto:almonshake75@gmail.com)
 - **WhatsApp**: [+20 1028950440](https://wa.me/201028950440)
-- **LinkedIn**: [Profile](https://www.linkedin.com/in/mo-men-ashraf-855776246/)
+- **LinkedIn**: [Profile](https://www.linkedin.com/in/momen-abdulrahman/)
 - **GitHub**: [R00t105](https://github.com/R00t105)
 
 ---
