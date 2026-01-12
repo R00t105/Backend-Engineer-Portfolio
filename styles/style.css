@@ -109,7 +109,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section {
-  padding: var(--spacing-lg) 0;
+  padding: 3rem 0 var(--spacing-lg) 0;
 }
 
 .btn {
@@ -177,12 +177,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-container {
-  background: rgba(17, 34, 64, 0.85); /* Glass effect on the pill */
-  backdrop-filter: blur(12px);
+  background: rgba(15, 23, 42, 0.7); /* iOS-style transparency */
+  backdrop-filter: blur(12px) saturate(180%); /* Deeper blur + high saturation */
+  -webkit-backdrop-filter: blur(20px) saturate(180%); /* Safari support */
   padding: 0.75rem 1.5rem;
-  border-radius: 50px; /* Pill shape */
-  border: 1px solid rgba(100, 255, 218, 0.1);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle glass border */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4); /* Deeper, softer shadow */
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -493,7 +494,7 @@ h1, h2, h3, h4, h5, h6 {
    7. ABOUT SECTION (CLEAN STRUCTURE)
    ========================================= */
 .about-section {
-  padding-top: 5rem;
+  padding-top: 3rem;
   background: var(--bg-primary); 
 }
 
@@ -601,7 +602,7 @@ h1, h2, h3, h4, h5, h6 {
    8. SKILLS SECTION (TECH ECOSYSTEM)
    ========================================= */
 .skills-section {
-  padding-top: 5rem;
+  padding-top: 3rem;
   background-color: var(--bg-secondary);
 }
 
@@ -747,14 +748,59 @@ h1, h2, h3, h4, h5, h6 {
 
 .github-icon-link {
   color: var(--text-secondary);
-  transition: all 0.2s ease;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
+  justify-content: flex-start; /* Switch to flex-start for Left-to-Right expansion */
+  background: rgba(52, 211, 153, 0);
+  padding: 0;
+  border-radius: 50px;
+  position: relative;
+  width: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0);
+  overflow: hidden; /* Ensure content doesn't spill during transition */
+}
+
+.github-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #000; 
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.github-arrow {
+  transition: transform 0.4s ease;
+  flex-shrink: 0;
+}
+
+.project-card:hover .github-icon-link {
+  color: #000;
+  background: linear-gradient(135deg, var(--accent-primary), #059669);
+  padding: 0.5rem 0.8rem;
+  width: 140px;
+  box-shadow: 0 4px 15px rgba(52, 211, 153, 0.3);
+}
+
+.project-card:hover .github-label {
+  opacity: 1;
+  max-width: 110px;
+  margin-left: 8px; /* Standard spacing after the icon */
+}
+
+.project-card:hover .github-arrow {
+  transform: translateX(2px); /* Flip arrow transition direction */
 }
 
 .github-icon-link:hover {
-  color: var(--accent-primary);
-  transform: scale(1.1);
+  transform: scale(1.03);
 }
 
 .project-title {
